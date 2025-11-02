@@ -1,31 +1,35 @@
 <div class="container mx-auto p-4">
   <div class="flex justify-between items-center mb-4">
     <h2 class="text-2xl font-bold">Product List</h2>
-    <button routerLink="create" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+    <button routerLink="create" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
       Add Product
     </button>
   </div>
   <div class="overflow-x-auto">
-    <table class="min-w-full bg-gray-800 text-white rounded-lg shadow-md">
+    <table class="min-w-full bg-white text-black rounded-lg shadow-md">
       <thead>
         <tr>
-          <th class="py-2 px-4 border-b border-red-600 text-left">ID</th>
-          <th class="py-2 px-4 border-b border-red-600 text-left">Name</th>
-          <th class="py-2 px-4 border-b border-red-600 text-left">Image</th>
-          <th class="py-2 px-4 border-b border-red-600 text-left">Price</th>
-          <th class="py-2 px-4 border-b border-red-600 text-left">Category</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">ID</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">Name</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">Description</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">Image</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">Price</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">Offer Price</th>
+          <th class="py-2 px-4 border-b border-orange-500 text-left">Category</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of productos" class="hover:bg-gray-700">
-          <td class="py-2 px-4 border-b border-gray-700">{{ product.id }}</td>
-          <td class="py-2 px-4 border-b border-gray-700">{{ product.name }}</td>
-          <td class="py-2 px-4 border-b border-gray-700">
+        <tr *ngFor="let product of productos" class="hover:bg-orange-100">
+          <td class="py-2 px-4 border-b border-gray-200">{{ product.id }}</td>
+          <td class="py-2 px-4 border-b border-gray-200">{{ product.name }}</td>
+          <td class="py-2 px-4 border-b border-gray-200">{{ product.description }}</td>
+          <td class="py-2 px-4 border-b border-gray-200">
             <img *ngIf="product.image_url" [src]="product.image_url" alt="{{ product.name }}" class="h-16 w-16 object-cover">
             <span *ngIf="!product.image_url">No Image</span>
           </td>
-          <td class="py-2 px-4 border-b border-gray-700">{{ product.price | currency:'S/':'symbol':'1.2-2' }}</td>
-          <td class="py-2 px-4 border-b border-gray-700">{{ product.category }}</td>
+          <td class="py-2 px-4 border-b border-gray-200">{{ product.price | currency:'S/':'symbol':'1.2-2' }}</td>
+          <td class="py-2 px-4 border-b border-gray-200">{{ product.offer_price | currency:'S/':'symbol':'1.2-2' }}</td>
+          <td class="py-2 px-4 border-b border-gray-200">{{ product.category }}</td>
         </tr>
       </tbody>
     </table>

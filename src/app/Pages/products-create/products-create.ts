@@ -26,7 +26,9 @@ export class ProductsCreate implements OnInit {
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
+      description: ['', Validators.required],
       price: ['', Validators.required],
+      offer_price: [null],
       category_id: ['', Validators.required]
     });
   }
@@ -47,7 +49,11 @@ export class ProductsCreate implements OnInit {
     if (this.productForm.valid) {
       const formData = new FormData();
       formData.append('name', this.productForm.get('name')?.value);
+      formData.append('description', this.productForm.get('description')?.value);
       formData.append('price', this.productForm.get('price')?.value);
+      if (this.productForm.get('offer_price')?.value) {
+        formData.append('offer_price', this.productForm.get('offer_price')?.value);
+      }
       formData.append('category_id', this.productForm.get('category_id')?.value);
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
@@ -59,7 +65,7 @@ export class ProductsCreate implements OnInit {
           title: 'Producto Creado',
           text: 'El producto ha sido creado exitosamente.'
         }).then(() => {
-          this.router.navigate(['/products']);
+          this.router.navigate(['/dashboard/products']);
         });
       });
     }

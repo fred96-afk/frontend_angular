@@ -35,7 +35,7 @@ export class Login {
             text: 'Has iniciado sesión correctamente!'
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['/products']);
+              this.router.navigate(['/dashboard/products']);
             }
           });
         },
