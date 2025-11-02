@@ -26,15 +26,16 @@ export class Login {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
       this.authLoginService.postlogin(username, password).subscribe(
-        (response: user) => {
+        (response: any) => {
           console.log('Login successful', response);
+          localStorage.setItem('token', response.token);
           Swal.fire({
             icon: 'success',
             title: 'Inicio de sesión exitoso',
             text: 'Has iniciado sesión correctamente!'
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['/productos']);
+              this.router.navigate(['/products']);
             }
           });
         },
